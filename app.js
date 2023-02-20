@@ -1,7 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import routes from './apps/index.js';
-import authMiddleware from './middleware/authMiddleware.js';
+import v1Routes from './apps/index.js';
 import response from './utilities/response.js';
 import logger from './config/logger.js';
 
@@ -14,7 +13,6 @@ app.listen(port, () => {
   logger.info(`Server started on port ${port}`);
 });
 
-app.use(authMiddleware);
 app.use(express.json());
-app.use(routes);
+app.use('/v1', v1Routes);
 app.use(response);
